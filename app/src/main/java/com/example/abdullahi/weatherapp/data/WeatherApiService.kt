@@ -14,12 +14,16 @@ import retrofit2.http.Query
 const val API_KEY = "81112213acc8c46b42788e0022b6f1ee"
 const val BASE_URL = "http://api.weatherstack.com/"
 //URL: http://api.weatherstack.com/current?access_key=81112213acc8c46b42788e0022b6f1ee&query=New%20York
+//Optional
+    //language= en
+    //units = {[m for Metric],[ s for Scientific ], [f for Fahrenheit]}
 
 interface WeatherApiService {
 
     @GET("current")
     fun getCurrentWeather(
-        @Query("query") location : String
+        @Query("query") location : String,
+        @Query("units") tempUnit: String
     ):Deferred<CurrentWeatherResponse>
 
     companion object{
