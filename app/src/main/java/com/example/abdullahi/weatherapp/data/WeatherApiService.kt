@@ -1,0 +1,59 @@
+package com.example.abdullahi.weatherapp.data
+
+import com.example.abdullahi.weatherapp.data.network.response.CurrentWeatherResponse
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
+import kotlinx.coroutines.Deferred
+import okhttp3.Interceptor
+import okhttp3.OkHttpClient
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.http.GET
+import retrofit2.http.Query
+
+
+const val API_KEY = "81112213acc8c46b42788e0022b6f1ee"
+const val BASE_URL = "http://api.weatherstack.com/"
+//URL: http://api.weatherstack.com/current?access_key=81112213acc8c46b42788e0022b6f1ee&query=New%20York
+
+interface WeatherApiService {
+
+    @GET("current")
+    fun getCurrentWeather(
+        @Query("query") location : String
+    ):Deferred<CurrentWeatherResponse>
+
+    companion object{
+        operator fun invoke():WeatherApiService{
+            val requestInterceptor = Interceptor{
+
+                //Creating the interceptor to be added on every request
+                val url  = it.request()
+                    .url()
+                    .newBuilder()
+                    .addQueryParameter("access_key", API_KEY)
+                    .build()
+
+
+                val request = it.request()
+                    .newBuilder()
+                    .url(url)
+                    .build()
+
+                return@Interceptor it.proceed(request)
+            }
+
+            val okHttpClient = OkHttpClient.Builder()
+                .addInterceptor(requestInterceptor)
+                .build()
+
+            val retrofit = Retrofit.Builder()
+                .client(okHttpClient)
+                .baseUrl(BASE_URL)
+                .addCallAdapterFactory(CoroutineCallAdapterFactory())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+
+            return retrofit.create(WeatherApiService::class.java)
+        }
+    }
+}

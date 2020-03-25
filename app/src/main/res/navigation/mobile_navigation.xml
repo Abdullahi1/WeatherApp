@@ -3,41 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@id/currentWeatherFragment">
 
     <fragment
-        android:id="@+id/nav_home"
-        android:name="com.example.abdullahi.weatherapp.ui.home.HomeFragment"
-        android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
-
+        android:id="@+id/currentWeatherFragment"
+        android:name="com.example.abdullahi.weatherapp.ui.fragments.weather.current.CurrentWeatherFragment"
+        android:label="current_weather_fragment"
+        tools:layout="@layout/current_weather_fragment" />
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.example.abdullahi.weatherapp.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
-
+        android:id="@+id/futureWeatherListFragment"
+        android:name="com.example.abdullahi.weatherapp.ui.fragments.weather.future.list.FutureWeatherListFragment"
+        android:label="future_weather_list_fragment"
+        tools:layout="@layout/future_weather_list_fragment" />
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.abdullahi.weatherapp.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
-
+        android:id="@+id/futureDetailWeatherCondition"
+        android:name="com.example.abdullahi.weatherapp.ui.fragments.weather.future.details.FutureDetailWeatherCondition"
+        android:label="future_detail_weather_condition_fragment"
+        tools:layout="@layout/future_detail_weather_condition_fragment" />
     <fragment
-        android:id="@+id/nav_tools"
-        android:name="com.example.abdullahi.weatherapp.ui.tools.ToolsFragment"
-        android:label="@string/menu_tools"
-        tools:layout="@layout/fragment_tools" />
-
-    <fragment
-        android:id="@+id/nav_share"
-        android:name="com.example.abdullahi.weatherapp.ui.share.ShareFragment"
-        android:label="@string/menu_share"
-        tools:layout="@layout/fragment_share" />
-
-    <fragment
-        android:id="@+id/nav_send"
-        android:name="com.example.abdullahi.weatherapp.ui.send.SendFragment"
-        android:label="@string/menu_send"
-        tools:layout="@layout/fragment_send" />
+        android:id="@+id/settingsFragment"
+        android:name="com.example.abdullahi.weatherapp.ui.fragments.settings.SettingsFragment"
+        android:label="SettingsFragment" />
 </navigation>
