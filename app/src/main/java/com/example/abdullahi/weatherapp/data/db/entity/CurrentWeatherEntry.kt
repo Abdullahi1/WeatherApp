@@ -49,9 +49,7 @@ data class CurrentWeatherEntry(
 
     @SerializedName("wind_speed")
     val windSpeed: Int
-)
-
-{
+) {
     @PrimaryKey(autoGenerate = false)
-    val id: Int = CURRENT_WEATHER_ID
+    var id: Int = CURRENT_WEATHER_ID
 }

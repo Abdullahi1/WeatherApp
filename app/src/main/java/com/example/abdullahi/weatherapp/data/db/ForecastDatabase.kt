@@ -4,6 +4,8 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
+import com.example.abdullahi.weatherapp.data.db.converter.ListConverter
 import com.example.abdullahi.weatherapp.data.db.entity.CurrentWeatherEntry
 
 
@@ -11,6 +13,7 @@ import com.example.abdullahi.weatherapp.data.db.entity.CurrentWeatherEntry
     entities=[CurrentWeatherEntry::class],
     version = 1
 )
+@TypeConverters(ListConverter::class)
 abstract class ForecastDatabase : RoomDatabase(){
     abstract fun currentWeatherDao(): CurrentWeatherDao
 
