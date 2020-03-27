@@ -1,6 +1,7 @@
 package com.example.abdullahi.weatherapp
 
 import android.app.Application
+import androidx.multidex.MultiDexApplication
 import com.example.abdullahi.weatherapp.data.WeatherApiService
 import com.example.abdullahi.weatherapp.data.db.ForecastDatabase
 import com.example.abdullahi.weatherapp.data.network.DataSource.WeatherNetworkDataSource
@@ -19,7 +20,7 @@ import org.kodein.di.generic.instance
 import org.kodein.di.generic.provider
 import org.kodein.di.generic.singleton
 
-class ForecastApplication : Application(), KodeinAware{
+class ForecastApplication : MultiDexApplication(), KodeinAware{
     override val kodein: Kodein = Kodein.lazy {
         import(androidXModule(this@ForecastApplication))
 
