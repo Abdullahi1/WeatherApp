@@ -8,6 +8,8 @@ import com.example.abdullahi.weatherapp.data.network.DataSource.WeatherNetworkDa
 import com.example.abdullahi.weatherapp.data.network.DataSource.WeatherNetworkDataSourceImpl
 import com.example.abdullahi.weatherapp.data.network.interceptor.ConnectivityInterceptor
 import com.example.abdullahi.weatherapp.data.network.interceptor.ConnectivityInterceptorImpl
+import com.example.abdullahi.weatherapp.data.provider.UnitProvider
+import com.example.abdullahi.weatherapp.data.provider.UnitProviderImpl
 import com.example.abdullahi.weatherapp.data.repository.ForecastRepository
 import com.example.abdullahi.weatherapp.data.repository.ForecastRepositoryImpl
 import com.example.abdullahi.weatherapp.ui.fragments.weather.current.CurrentWeatherViewModelFactory
@@ -30,7 +32,8 @@ class ForecastApplication : MultiDexApplication(), KodeinAware{
         bind() from singleton { WeatherApiService(instance()) }
         bind<WeatherNetworkDataSource>() with singleton { WeatherNetworkDataSourceImpl(instance()) }
         bind<ForecastRepository>() with singleton { ForecastRepositoryImpl(instance(), instance()) }
-        bind() from provider { CurrentWeatherViewModelFactory(instance()) }
+        bind<UnitProvider>() with singleton { UnitProviderImpl(instance()) }
+        bind() from provider { CurrentWeatherViewModelFactory(instance(), instance()) }
     }
 
 

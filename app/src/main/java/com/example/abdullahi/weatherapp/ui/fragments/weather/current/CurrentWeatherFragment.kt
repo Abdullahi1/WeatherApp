@@ -78,18 +78,25 @@ class CurrentWeatherFragment : ScopedFragment(), KodeinAware {
             if (it == null) return@Observer
 
             group_loading.visibility = View.GONE
-            updateLocation("New York")
+            updateLocation("Abuja")
             updateDateToday()
             updateTemperature(it.temperature,it.feelslike)
             updateCondition(it.weatherDescriptions[0])
             updatePrecipitation(it.precip)
             updateWind(it.windDir,it.windSpeed)
             updateVisibility(it.visibility)
+            updateLastUpdated(it.observationTime)
 
             GlideApp.with(this@CurrentWeatherFragment)
                 .load(it.weatherIcons[0])
                 .into(imageView_condition_icon)
         })
+
+
+    }
+
+    private fun updateLastUpdated(observationTime: String) {
+        textView_last_updated.text = "Last updated : $observationTime"
     }
 
 
