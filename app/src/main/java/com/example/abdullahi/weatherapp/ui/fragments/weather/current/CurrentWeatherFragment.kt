@@ -51,6 +51,7 @@ class CurrentWeatherFragment : ScopedFragment(), KodeinAware {
             ViewModelProvider(this, viewModelFactory).get(CurrentWeatherViewModel::class.java)
         // TODO: Use the ViewModel
         bindUI()
+
 //        val apiService = WeatherApiService(
 //            ConnectivityInterceptorImpl(
 //                this.context!!
@@ -64,8 +65,8 @@ class CurrentWeatherFragment : ScopedFragment(), KodeinAware {
 //        })
 //
 //        GlobalScope.launch(Dispatchers.Main){
-////            val currentWeatherResponse = apiService.getCurrentWeather(location = "New York",tempUnit = "m").await()
-////            current_text_view.text = currentWeatherResponse.toString()
+//            val currentWeatherResponse = apiService.getCurrentWeather(weatherLocation = "New York",tempUnit = "m").await()
+//            current_text_view.text = currentWeatherResponse.toString()
 //            weatherNetworkDataSource.fetchCurrentWeather("New York", "m")
 //        }
 //    }
@@ -74,11 +75,19 @@ class CurrentWeatherFragment : ScopedFragment(), KodeinAware {
 
     private fun bindUI() = launch {
         val currentWeather = viewModel.weather.await()
+
+        val currentWeatherLocation = viewModel.weatherLocation.await()
+
+        currentWeatherLocation.observe(this@CurrentWeatherFragment, Observer {
+            if (it == null) return@Observer
+            updateLocation(it.name, it.country)
+
+        })
+
         currentWeather.observe(this@CurrentWeatherFragment, Observer {
             if (it == null) return@Observer
 
             group_loading.visibility = View.GONE
-            updateLocation("Abuja")
             updateDateToday()
             updateTemperature(it.temperature,it.feelslike)
             updateCondition(it.weatherDescriptions[0])
@@ -104,8 +113,8 @@ class CurrentWeatherFragment : ScopedFragment(), KodeinAware {
         return if (viewModel.isMetric) metric else imperial
     }
 
-    private fun updateLocation(location: String){
-      (activity as? AppCompatActivity)?.supportActionBar?.title = location
+    private fun updateLocation(locationName: String, countryName:String){
+      (activity as? AppCompatActivity)?.supportActionBar?.title = "$locationName ($countryName)"
     }
 
     private fun updateDateToday(){

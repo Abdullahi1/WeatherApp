@@ -1,6 +1,8 @@
 package com.example.abdullahi.weatherapp
 
 import android.app.Application
+import android.content.Context
+import android.location.Location
 import androidx.multidex.MultiDexApplication
 import com.example.abdullahi.weatherapp.data.WeatherApiService
 import com.example.abdullahi.weatherapp.data.db.ForecastDatabase
@@ -8,11 +10,14 @@ import com.example.abdullahi.weatherapp.data.network.DataSource.WeatherNetworkDa
 import com.example.abdullahi.weatherapp.data.network.DataSource.WeatherNetworkDataSourceImpl
 import com.example.abdullahi.weatherapp.data.network.interceptor.ConnectivityInterceptor
 import com.example.abdullahi.weatherapp.data.network.interceptor.ConnectivityInterceptorImpl
+import com.example.abdullahi.weatherapp.data.provider.LocationProvider
+import com.example.abdullahi.weatherapp.data.provider.LocationProviderImpl
 import com.example.abdullahi.weatherapp.data.provider.UnitProvider
 import com.example.abdullahi.weatherapp.data.provider.UnitProviderImpl
 import com.example.abdullahi.weatherapp.data.repository.ForecastRepository
 import com.example.abdullahi.weatherapp.data.repository.ForecastRepositoryImpl
 import com.example.abdullahi.weatherapp.ui.fragments.weather.current.CurrentWeatherViewModelFactory
+import com.google.android.gms.location.LocationServices
 import com.jakewharton.threetenabp.AndroidThreeTen
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
@@ -28,10 +33,13 @@ class ForecastApplication : MultiDexApplication(), KodeinAware{
 
         bind() from singleton { ForecastDatabase(instance()) }
         bind() from singleton { instance<ForecastDatabase>().currentWeatherDao() }
+        bind() from singleton { instance<ForecastDatabase>().weatherLocationDao() }
         bind<ConnectivityInterceptor>() with singleton { ConnectivityInterceptorImpl(instance()) }
         bind() from singleton { WeatherApiService(instance()) }
         bind<WeatherNetworkDataSource>() with singleton { WeatherNetworkDataSourceImpl(instance()) }
-        bind<ForecastRepository>() with singleton { ForecastRepositoryImpl(instance(), instance()) }
+        bind() from provider { LocationServices.getFusedLocationProviderClient(instance<Context>()) }
+        bind<LocationProvider>() with singleton { LocationProviderImpl(instance(),instance()) }
+        bind<ForecastRepository>() with singleton { ForecastRepositoryImpl(instance(), instance(),instance(),instance()) }
         bind<UnitProvider>() with singleton { UnitProviderImpl(instance()) }
         bind() from provider { CurrentWeatherViewModelFactory(instance(), instance()) }
     }
