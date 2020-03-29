@@ -1,7 +1,5 @@
-package com.example.abdullahi.weatherapp.future
+package com.example.abdullahi.weatherapp.data.db.future
 
-
-import com.google.gson.annotations.SerializedName
 
 data class ForecastDaysContainer(
     //Get for each day

@@ -1,7 +1,7 @@
 package com.example.abdullahi.weatherapp.data.db.converter
 
 import androidx.room.TypeConverter
-import com.example.abdullahi.weatherapp.future.Hourly
+import com.example.abdullahi.weatherapp.data.db.future.Hourly
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.util.*

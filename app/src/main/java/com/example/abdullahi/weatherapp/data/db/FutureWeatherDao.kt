@@ -5,7 +5,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.abdullahi.weatherapp.future.FutureWeatherEntry
+import com.example.abdullahi.weatherapp.data.db.future.FutureWeatherEntry
  import org.threeten.bp.LocalDate
 
 @Dao

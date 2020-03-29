@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.abdullahi.weatherapp.data.WeatherApiService
 import com.example.abdullahi.weatherapp.data.network.response.CurrentWeatherResponse
-import com.example.abdullahi.weatherapp.future.FutureWeatherResponse
+import com.example.abdullahi.weatherapp.data.db.future.FutureWeatherResponse
 import com.example.abdullahi.weatherapp.internal.NoConnectivityException
 
 class WeatherNetworkDataSourceImpl(

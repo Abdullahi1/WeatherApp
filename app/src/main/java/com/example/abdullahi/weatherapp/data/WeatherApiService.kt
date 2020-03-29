@@ -2,7 +2,7 @@ package com.example.abdullahi.weatherapp.data
 
 import com.example.abdullahi.weatherapp.data.network.interceptor.ConnectivityInterceptor
 import com.example.abdullahi.weatherapp.data.network.response.CurrentWeatherResponse
-import com.example.abdullahi.weatherapp.future.FutureWeatherResponse
+import com.example.abdullahi.weatherapp.data.db.future.FutureWeatherResponse
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import kotlinx.coroutines.Deferred
 import okhttp3.Interceptor

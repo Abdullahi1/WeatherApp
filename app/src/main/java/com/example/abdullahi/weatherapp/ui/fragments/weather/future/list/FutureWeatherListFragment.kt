@@ -8,8 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.example.abdullahi.weatherapp.R
+import com.example.abdullahi.weatherapp.ui.base.ScopedFragment
 
-class FutureWeatherListFragment : Fragment() {
+class FutureWeatherListFragment : ScopedFragment() {
 
     companion object {
         fun newInstance() =

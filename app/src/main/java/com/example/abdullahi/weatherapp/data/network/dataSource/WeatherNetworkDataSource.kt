@@ -2,7 +2,7 @@ package com.example.abdullahi.weatherapp.data.network.dataSource
 
 import androidx.lifecycle.LiveData
 import com.example.abdullahi.weatherapp.data.network.response.CurrentWeatherResponse
-import com.example.abdullahi.weatherapp.future.FutureWeatherResponse
+import com.example.abdullahi.weatherapp.data.db.future.FutureWeatherResponse
 
 interface WeatherNetworkDataSource {
 
