@@ -1,13 +1,11 @@
 package com.example.abdullahi.weatherapp
 
-import android.app.Application
 import android.content.Context
-import android.location.Location
 import androidx.multidex.MultiDexApplication
 import com.example.abdullahi.weatherapp.data.WeatherApiService
 import com.example.abdullahi.weatherapp.data.db.ForecastDatabase
-import com.example.abdullahi.weatherapp.data.network.DataSource.WeatherNetworkDataSource
-import com.example.abdullahi.weatherapp.data.network.DataSource.WeatherNetworkDataSourceImpl
+import com.example.abdullahi.weatherapp.data.network.dataSource.WeatherNetworkDataSource
+import com.example.abdullahi.weatherapp.data.network.dataSource.WeatherNetworkDataSourceImpl
 import com.example.abdullahi.weatherapp.data.network.interceptor.ConnectivityInterceptor
 import com.example.abdullahi.weatherapp.data.network.interceptor.ConnectivityInterceptorImpl
 import com.example.abdullahi.weatherapp.data.provider.LocationProvider

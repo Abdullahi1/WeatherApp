@@ -2,6 +2,7 @@ package com.example.abdullahi.weatherapp.data
 
 import com.example.abdullahi.weatherapp.data.network.interceptor.ConnectivityInterceptor
 import com.example.abdullahi.weatherapp.data.network.response.CurrentWeatherResponse
+import com.example.abdullahi.weatherapp.future.FutureWeatherResponse
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import kotlinx.coroutines.Deferred
 import okhttp3.Interceptor
@@ -22,10 +23,18 @@ const val BASE_URL = "http://api.weatherstack.com/"
 interface WeatherApiService {
 
     @GET("current")
-    fun getCurrentWeather(
+    fun getCurrentWeatherAsync(
         @Query("query") location : String,
         @Query("units") tempUnit: String
     ):Deferred<CurrentWeatherResponse>
+
+    @GET("forecast")
+    fun getFutureWeatherAsync(
+        @Query("query") location : String,
+        @Query("units") tempUnit: String,
+        @Query("forecast_days") forecastDays : String,
+        @Query("hourly") hourly: String
+    ):Deferred<FutureWeatherResponse>
 
     companion object{
         operator fun invoke(

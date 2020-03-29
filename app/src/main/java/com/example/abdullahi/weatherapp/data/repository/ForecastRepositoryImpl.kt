@@ -5,7 +5,7 @@ import com.example.abdullahi.weatherapp.data.db.CurrentWeatherDao
 import com.example.abdullahi.weatherapp.data.db.WeatherLocationDao
 import com.example.abdullahi.weatherapp.data.db.entity.CurrentWeatherEntry
 import com.example.abdullahi.weatherapp.data.db.entity.WeatherLocation
-import com.example.abdullahi.weatherapp.data.network.DataSource.WeatherNetworkDataSource
+import com.example.abdullahi.weatherapp.data.network.dataSource.WeatherNetworkDataSource
 import com.example.abdullahi.weatherapp.data.network.response.CurrentWeatherResponse
 import com.example.abdullahi.weatherapp.data.provider.LocationProvider
 import kotlinx.coroutines.Dispatchers
