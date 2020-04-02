@@ -11,15 +11,15 @@ data class FutureWeatherEntry(
     @PrimaryKey(autoGenerate = true)
     val id : Int? = null,
 
-    val avgtemp: Int,
+    val avgtemp: Double,
     val date: String,
     @SerializedName("date_epoch")
-    val dateEpoch: Int,
-    //val hourly: List<Hourly>,
-    val maxtemp: Int,
-    val mintemp: Int,
+    val dateEpoch: Double,
+    val hourly: List<Hourly>,
+    val maxtemp: Double,
+    val mDoubleemp: Double,
     val sunhour: Double,
-    val totalsnow: Int,
+    val totalsnow: Double,
     @SerializedName("uv_index")
-    val uvIndex: Int
+    val uvIndex: Double
 )

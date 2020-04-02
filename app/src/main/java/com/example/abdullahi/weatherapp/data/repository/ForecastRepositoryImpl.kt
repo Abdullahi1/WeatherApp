@@ -34,7 +34,7 @@ class ForecastRepositoryImpl(
         }
 
         weatherNetworkDataSource.downloadFutureWeather.observeForever{futureWeather ->
-            persistFetchedFutureWeather(futureWeather)
+            //persistFetchedFutureWeather(futureWeather) //Cant be called until a premium api key is gotten
         }
     }
 
@@ -84,16 +84,21 @@ class ForecastRepositoryImpl(
 
         if (lastWeatherLocation == null || locationProvider.hasLocationChanged(lastWeatherLocation)){
             fetchCurrentWeather(metric)
-            fetchFutureWeather(metric)
+
+            //Cant be called until a premium api key is gotten
+
+            //fetchFutureWeather(metric)
             return
         }
 
         if (isFetchCurrentNeeded(lastWeatherLocation.zonedDateTime))
             fetchCurrentWeather(metric)
 
-        if (isFutureNeeded()){
-            fetchFutureWeather(metric)
-        }
+    //Cant be called until a premium api key is gotten
+
+//        if (isFutureNeeded()){
+//            fetchFutureWeather(metric)
+//        }
     }
 
     private fun isFutureNeeded(): Boolean {
